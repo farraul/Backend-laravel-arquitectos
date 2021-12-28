@@ -4,11 +4,11 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Database\QueryException;
-use App\Models\User;
-class UserController extends Controller
+use App\Models\Lead;
+class LeadController extends Controller
 {
     //
-    public function showAllUser(){
+    public function showAllLeads(){
 
         try {
             
@@ -18,29 +18,22 @@ class UserController extends Controller
             return $error;
         }
     }
-    ////////////////Crear Users////////////////
-    public function addUsers(Request $request){//sin id y sin fecha
-        $name = $request->input('name');
-        $username = $request->input('username');
-        $email = $request->input('email');
-        $telf = $request->input('telf');
+    ////////////////Crear Leads////////////////
+    public function addArchitect(Request $request){//sin id y sin fecha
+        $u_title_order_client = $request->input('u_title_order_client');
+        $u_description_order_client = $request->input('u_description_order_client');
+        $u_city = $request->input('u_city');
+        $u_date_to_work = $request->input('u_date_to_work');
 
-        $gender = $request->input('select_gender');
-        $c_a = $request->input('select_community');
-        $rol = $request->input('rol');
-
+     
         try {
 
             return User::create(
                 [
-                    'name' => $name,
-                    'username' => $username,
-                    'email' => $email,
-                    'telf' => $telf,
-
-                    'gender' => $gender,
-                    'c.a' => $c_a,
-                    'role' => $rol,
+                    'u_title_order_client' => $u_title_order_client,
+                    'u_description_order_client' => $u_description_order_client,
+                    'u_city' => $u_city,
+                    'u_date_to_work' => $u_date_to_work,
 
                 ]
                 );
@@ -56,32 +49,27 @@ class UserController extends Controller
         }
         
     }
-   ////////////////Modificar Users////////////////
-    public function UpdateUsers (Request $request,$id){
+   ////////////////Modificar Architect////////////////
+    public function UpdateLeads (Request $request,$id){
 
-        $name = $request->input('name');
-        $username = $request->input('username');
-        $email = $request->input('email');
-        $telf = $request->input('telf');
+        $u_title_order_client = $request->input('u_title_order_client');
+        $u_description_order_client = $request->input('u_description_order_client');
+        $u_city = $request->input('u_city');
+        $u_date_to_work = $request->input('u_date_to_work');
 
-        $gender = $request->input('select_gender');
-        $c_a = $request->input('select_community');
-        $rol =  $request->input('rol');
 
 
         try {
 
-            $User = User::where('id', '=', $id)
+            $Usuario = User::where('id', '=', $id)
             ->update(
                 [
-                    'name' => $name,
-                    'username' => $username,
-                    'email' => $email,
-                    'telf' => $telf,
+                    'u_title_order_client' => $u_title_order_client,
+                    'u_description_order_client' => $u_description_order_client,
+                    'u_city' => $u_city,
+                    'u_date_to_work' => $u_date_to_work,
 
-                    'gender' => $gender,
-                    'c.a' => $c_a,
-                    'rol' => $role,
+        
                 ]
                 );
                 return User::all()
@@ -95,15 +83,15 @@ class UserController extends Controller
 
         }
     }
-    ////////////////Busqueda por ID Users ////////////////
+    ////////////////Busqueda por ID Architect ////////////////
 
-    public function UsersByID($id){
+    public function LeadsByID($id){
 
 
         try {
-            $User = User::all()
+            $Usuario = User::all()
             ->where('id', "=", $id);
-            return $User;
+            return $Usuario;
 
         } catch (QueryException $error) {
 
@@ -115,28 +103,27 @@ class UserController extends Controller
         
     }
 
-    ////////////////Borrar Users ////////////////
-    public function DeleteUsers($id){
-
+    ////////////////Borrar Architect ////////////////
+    public function DeleteLeads($id){
         
 
         try {
     ////////////////BUSCA EL PLAYER POR ID. SI EXISTE, BORRA EL PLAYER. SI NO, SACA MENSAJE DE ERROR////////////////
-            $arrayUser = User::all()
+            $arrayLead = User::all()
             ->where('id', '=', $id);
 
-            $User = User::where('id', '=', $id);
+            $Lead = User::where('id', '=', $id);
             
-            if (count($arrayUser) == 0) {
+            if (count($arrayLead) == 0) {
                 return response()->json([
-                    "data" => $arrayUser,
-                    "message" => "No se ha encontrado el User"
+                    "data" => $arrayLead,
+                    "message" => "No se ha encontrado el Usuario"
                 ]);
             }else{
-                $User->delete();
+                $Lead->delete();
                 return response()->json([
-                    "data" => $arrayUser,
-                    "message" => "User borrado correctamente"
+                    "data" => $arrayLead,
+                    "message" => "Usuario borrado correctamente"
                 ]);
             }
 
@@ -156,7 +143,7 @@ class UserController extends Controller
 
 //     try {
 
-//         return User::all()->where('id', '=', $id)
+//         return Usuario::all()->where('id', '=', $id)
 //         ->makeHidden(['password'])->keyBy('id');
 
 //     } catch (QueryException $error) {

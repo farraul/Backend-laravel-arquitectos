@@ -4,11 +4,11 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Database\QueryException;
-use App\Models\User;
-class UserController extends Controller
+use App\Models\Architect;
+class ArchitectController extends Controller
 {
     //
-    public function showAllUser(){
+    public function showAllArchitect(){
 
         try {
             
@@ -18,30 +18,19 @@ class UserController extends Controller
             return $error;
         }
     }
-    ////////////////Crear Users////////////////
-    public function addUsers(Request $request){//sin id y sin fecha
-        $name = $request->input('name');
-        $username = $request->input('username');
-        $email = $request->input('email');
-        $telf = $request->input('telf');
+    ////////////////Crear Architects////////////////
+    public function addArchitect(Request $request){//sin id y sin fecha
+        $web_site = $request->input('web_site');
+        $description_experience = $request->input('description_experience');
+    
 
-        $gender = $request->input('select_gender');
-        $c_a = $request->input('select_community');
-        $rol = $request->input('rol');
+
 
         try {
-
             return User::create(
                 [
-                    'name' => $name,
-                    'username' => $username,
-                    'email' => $email,
-                    'telf' => $telf,
-
-                    'gender' => $gender,
-                    'c.a' => $c_a,
-                    'role' => $rol,
-
+                    'web_site' => $web_site,
+                    'description_experience' => $description_experience,
                 ]
                 );
 
@@ -56,32 +45,24 @@ class UserController extends Controller
         }
         
     }
-   ////////////////Modificar Users////////////////
-    public function UpdateUsers (Request $request,$id){
+   ////////////////Modificar Architects////////////////
+    public function UpdateArchitects (Request $request,$id){
 
-        $name = $request->input('name');
-        $username = $request->input('username');
-        $email = $request->input('email');
-        $telf = $request->input('telf');
+        $web_site = $request->input('web_site');
+        $description_experience = $request->input('description_experience');
+        $password = $request->input('password');
 
-        $gender = $request->input('select_gender');
-        $c_a = $request->input('select_community');
-        $rol =  $request->input('rol');
 
+   
 
         try {
 
-            $User = User::where('id', '=', $id)
+            $Architect = User::where('id', '=', $id)
             ->update(
                 [
-                    'name' => $name,
-                    'username' => $username,
-                    'email' => $email,
-                    'telf' => $telf,
+                    'web_site' => $web_site,
+                    'description_experience' => $description_experience,
 
-                    'gender' => $gender,
-                    'c.a' => $c_a,
-                    'rol' => $role,
                 ]
                 );
                 return User::all()
@@ -95,15 +76,15 @@ class UserController extends Controller
 
         }
     }
-    ////////////////Busqueda por ID Users ////////////////
+    ////////////////Busqueda por ID Architects ////////////////
 
-    public function UsersByID($id){
+    public function ArchitectsByID($id){
 
 
         try {
-            $User = User::all()
+            $Architect = User::all()
             ->where('id', "=", $id);
-            return $User;
+            return $Architect;
 
         } catch (QueryException $error) {
 
@@ -115,28 +96,28 @@ class UserController extends Controller
         
     }
 
-    ////////////////Borrar Users ////////////////
-    public function DeleteUsers($id){
+    ////////////////Borrar Architects ////////////////
+    public function DeleteArchitects($id){
 
         
 
         try {
     ////////////////BUSCA EL PLAYER POR ID. SI EXISTE, BORRA EL PLAYER. SI NO, SACA MENSAJE DE ERROR////////////////
-            $arrayUser = User::all()
+            $arrayArchitect = User::all()
             ->where('id', '=', $id);
 
-            $User = User::where('id', '=', $id);
+            $Architect = User::where('id', '=', $id);
             
-            if (count($arrayUser) == 0) {
+            if (count($arrayArchitect) == 0) {
                 return response()->json([
-                    "data" => $arrayUser,
-                    "message" => "No se ha encontrado el User"
+                    "data" => $arrayArchitect,
+                    "message" => "No se ha encontrado el Architect"
                 ]);
             }else{
-                $User->delete();
+                $Architect->delete();
                 return response()->json([
-                    "data" => $arrayUser,
-                    "message" => "User borrado correctamente"
+                    "data" => $arrayArchitect,
+                    "message" => "Architect borrado correctamente"
                 ]);
             }
 
@@ -156,7 +137,7 @@ class UserController extends Controller
 
 //     try {
 
-//         return User::all()->where('id', '=', $id)
+//         return Architect::all()->where('id', '=', $id)
 //         ->makeHidden(['password'])->keyBy('id');
 
 //     } catch (QueryException $error) {

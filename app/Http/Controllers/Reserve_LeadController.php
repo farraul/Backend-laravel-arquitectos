@@ -4,11 +4,11 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Database\QueryException;
-use App\Models\User;
-class UserController extends Controller
+use App\Models\Reserve_Lead;
+class Reserve_Lead_Controller extends Controller
 {
     //
-    public function showAllUser(){
+    public function showAllReserve_Lead(){
 
         try {
             
@@ -18,29 +18,16 @@ class UserController extends Controller
             return $error;
         }
     }
-    ////////////////Crear Users////////////////
-    public function addUsers(Request $request){//sin id y sin fecha
-        $name = $request->input('name');
-        $username = $request->input('username');
-        $email = $request->input('email');
-        $telf = $request->input('telf');
-
-        $gender = $request->input('select_gender');
-        $c_a = $request->input('select_community');
-        $rol = $request->input('rol');
-
+    ////////////////Crear Reserve_Leads////////////////
+    public function addReserve_Leads(Request $request){//sin id y sin fecha
+        // $name = $request->input('name');
+        
         try {
 
             return User::create(
                 [
-                    'name' => $name,
-                    'username' => $username,
-                    'email' => $email,
-                    'telf' => $telf,
-
-                    'gender' => $gender,
-                    'c.a' => $c_a,
-                    'role' => $rol,
+                    // 'name' => $name,
+               
 
                 ]
                 );
@@ -56,34 +43,20 @@ class UserController extends Controller
         }
         
     }
-   ////////////////Modificar Users////////////////
-    public function UpdateUsers (Request $request,$id){
+   ////////////////Modificar Reserve_Leads////////////////
+    public function UpdateReserve_Leads (Request $request,$id){
 
-        $name = $request->input('name');
-        $username = $request->input('username');
-        $email = $request->input('email');
-        $telf = $request->input('telf');
+        // $name = $request->input('name');
 
-        $gender = $request->input('select_gender');
-        $c_a = $request->input('select_community');
-        $rol =  $request->input('rol');
 
 
         try {
 
-            $User = User::where('id', '=', $id)
+            $Reserve_Lead = User::where('id', '=', $id)
             ->update(
                 [
-                    'name' => $name,
-                    'username' => $username,
-                    'email' => $email,
-                    'telf' => $telf,
-
-                    'gender' => $gender,
-                    'c.a' => $c_a,
-                    'rol' => $role,
-                ]
-                );
+                // 'name' => $name,
+                ]);
                 return User::all()
                 ->where('id', "=", $id);
 
@@ -95,15 +68,15 @@ class UserController extends Controller
 
         }
     }
-    ////////////////Busqueda por ID Users ////////////////
+    ////////////////Busqueda por ID Reserve_Leads ////////////////
 
-    public function UsersByID($id){
+    public function Reserve_LeadsByID($id){
 
 
         try {
-            $User = User::all()
+            $Reserve_Lead = User::all()
             ->where('id', "=", $id);
-            return $User;
+            return $Reserve_Lead;
 
         } catch (QueryException $error) {
 
@@ -115,28 +88,28 @@ class UserController extends Controller
         
     }
 
-    ////////////////Borrar Users ////////////////
-    public function DeleteUsers($id){
+    ////////////////Borrar Reserve_Leads ////////////////
+    public function DeleteReserve_Leads($id){
 
         
 
         try {
     ////////////////BUSCA EL PLAYER POR ID. SI EXISTE, BORRA EL PLAYER. SI NO, SACA MENSAJE DE ERROR////////////////
-            $arrayUser = User::all()
+            $arrayReserve_Lead = User::all()
             ->where('id', '=', $id);
 
-            $User = User::where('id', '=', $id);
+            $Reserve_Lead = User::where('id', '=', $id);
             
-            if (count($arrayUser) == 0) {
+            if (count($arrayReserve_Lead) == 0) {
                 return response()->json([
-                    "data" => $arrayUser,
-                    "message" => "No se ha encontrado el User"
+                    "data" => $arrayReserve_Lead,
+                    "message" => "No se ha encontrado el Reserve_Lead"
                 ]);
             }else{
-                $User->delete();
+                $Reserve_Lead->delete();
                 return response()->json([
-                    "data" => $arrayUser,
-                    "message" => "User borrado correctamente"
+                    "data" => $arrayReserve_Lead,
+                    "message" => "Reserve_Lead borrado correctamente"
                 ]);
             }
 
@@ -156,7 +129,7 @@ class UserController extends Controller
 
 //     try {
 
-//         return User::all()->where('id', '=', $id)
+//         return Reserve_Lead::all()->where('id', '=', $id)
 //         ->makeHidden(['password'])->keyBy('id');
 
 //     } catch (QueryException $error) {
