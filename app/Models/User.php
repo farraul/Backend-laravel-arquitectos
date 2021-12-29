@@ -35,7 +35,7 @@ class User extends Authenticatable
 
     public function Leads()
     {
-        return $this->hasMany(Party::class);
+        return $this->hasMany(Lead::class);
     }
 
 }
