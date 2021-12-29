@@ -12,14 +12,14 @@ class LeadController extends Controller
 
         try {
             
-        return User::all();
+        return Lead::all();
 
         } catch(QueryException $error) {
             return $error;
         }
     }
     ////////////////Crear Leads////////////////
-    public function addArchitect(Request $request){//sin id y sin fecha
+    public function addLead(Request $request){//sin id y sin fecha
         $u_title_order_client = $request->input('u_title_order_client');
         $u_description_order_client = $request->input('u_description_order_client');
         $u_city = $request->input('u_city');
@@ -28,19 +28,17 @@ class LeadController extends Controller
      
         try {
 
-            return User::create(
+            return Lead::create(
                 [
                     'u_title_order_client' => $u_title_order_client,
                     'u_description_order_client' => $u_description_order_client,
                     'u_city' => $u_city,
                     'u_date_to_work' => $u_date_to_work,
-
                 ]
                 );
 
         } catch (QueryException $error) {
             $codigoError = $error->errorInfo[1];
-
             
                 return response()->json([
                     'error' => $codigoError
@@ -49,7 +47,7 @@ class LeadController extends Controller
         }
         
     }
-   ////////////////Modificar Architect////////////////
+   ////////////////Modificar Lead////////////////
     public function UpdateLeads (Request $request,$id){
 
         $u_title_order_client = $request->input('u_title_order_client');
@@ -61,7 +59,7 @@ class LeadController extends Controller
 
         try {
 
-            $Usuario = User::where('id', '=', $id)
+            $Usuario = Lead::where('id', '=', $id)
             ->update(
                 [
                     'u_title_order_client' => $u_title_order_client,
@@ -72,7 +70,7 @@ class LeadController extends Controller
         
                 ]
                 );
-                return User::all()
+                return Lead::all()
                 ->where('id', "=", $id);
 
         } catch (QueryException $error) {
@@ -87,11 +85,10 @@ class LeadController extends Controller
 
     public function LeadsByID($id){
 
-
         try {
-            $Usuario = User::all()
+            $Lead = Lead::all()
             ->where('id', "=", $id);
-            return $Usuario;
+            return $Lead;
 
         } catch (QueryException $error) {
 
@@ -99,20 +96,17 @@ class LeadController extends Controller
             if($codigoError){
                 return "Error $codigoError";
             }
-        }
-        
+        }  
     }
 
     ////////////////Borrar Architect ////////////////
     public function DeleteLeads($id){
         
-
         try {
-    ////////////////BUSCA EL PLAYER POR ID. SI EXISTE, BORRA EL PLAYER. SI NO, SACA MENSAJE DE ERROR////////////////
-            $arrayLead = User::all()
+            $arrayLead = Lead::all()
             ->where('id', '=', $id);
 
-            $Lead = User::where('id', '=', $id);
+            $Lead = Lead::where('id', '=', $id);
             
             if (count($arrayLead) == 0) {
                 return response()->json([

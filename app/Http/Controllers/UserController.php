@@ -8,7 +8,7 @@ use App\Models\User;
 class UserController extends Controller
 {
     //
-    public function showAllUser(){
+    public function showAllUsers(){
 
         try {
             
@@ -18,7 +18,7 @@ class UserController extends Controller
             return $error;
         }
     }
-    ////////////////Crear Users////////////////
+  /*  ////////////////Crear Users////////////////
     public function addUsers(Request $request){//sin id y sin fecha
         $name = $request->input('name');
         $username = $request->input('username');
@@ -55,13 +55,12 @@ class UserController extends Controller
             
         }
         
-    }
+    }*/
    ////////////////Modificar Users////////////////
     public function UpdateUsers (Request $request,$id){
 
         $name = $request->input('name');
         $username = $request->input('username');
-        $email = $request->input('email');
         $telf = $request->input('telf');
 
         $gender = $request->input('select_gender');
@@ -76,12 +75,11 @@ class UserController extends Controller
                 [
                     'name' => $name,
                     'username' => $username,
-                    'email' => $email,
-                    'telf' => $telf,
 
+                    'telf' => $telf,
+                    'c_a' => $c_a,
                     'gender' => $gender,
-                    'c.a' => $c_a,
-                    'rol' => $role,
+                    'rol' => $rol,
                 ]
                 );
                 return User::all()
@@ -118,10 +116,7 @@ class UserController extends Controller
     ////////////////Borrar Users ////////////////
     public function DeleteUsers($id){
 
-        
-
         try {
-    ////////////////BUSCA EL PLAYER POR ID. SI EXISTE, BORRA EL PLAYER. SI NO, SACA MENSAJE DE ERROR////////////////
             $arrayUser = User::all()
             ->where('id', '=', $id);
 
