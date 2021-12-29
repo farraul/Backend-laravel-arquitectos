@@ -20,6 +20,7 @@ class Lead extends Model
         'u_description_order_client',
         'u_city',
         'u_date_to_work',
+        'id_user'
 
 
         ];
