@@ -17,4 +17,9 @@ class Architect extends Model
 
         ];
 
+    /*    public function juegos() //
+    {
+        return $this->belongsTo(User::class);
+    }*/
+
     }
