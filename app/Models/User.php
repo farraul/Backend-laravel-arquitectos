@@ -29,4 +29,13 @@ class User extends Authenticatable
         'gender',
         'rol'
         ];
+    
+
+
+
+    public function Leads()
+    {
+        return $this->hasMany(Party::class);
     }
+
+}

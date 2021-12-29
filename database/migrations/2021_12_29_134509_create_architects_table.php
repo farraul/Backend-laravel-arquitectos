@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateArchitectTable extends Migration
+class CreateArchitectsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,13 @@ class CreateArchitectTable extends Migration
      */
     public function up()
     {
-        Schema::create('architect', function (Blueprint $table) {
+        Schema::create('architectS', function (Blueprint $table) {
 
             $table->id();
 
             $table->string('web_site')->nullable();
             $table->string('description_experience');
+            $table->string('password');
 
            /* $table->unsignedInteger('id_user');
             $table->foreign('id_user')
@@ -43,6 +44,6 @@ class CreateArchitectTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('architect');
+        Schema::dropIfExists('architectS');
     }
 }

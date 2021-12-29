@@ -24,4 +24,9 @@ class Lead extends Model
 
         ];
 
+        public function users()
+        {
+            return $this->belongsTo(User::class);
+        }
+
     }

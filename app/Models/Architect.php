@@ -14,6 +14,7 @@ class Architect extends Model
     protected $fillable = [
         'web_site',
         'description_experience',
+        'password',
 
         ];
 

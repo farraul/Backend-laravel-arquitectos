@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateLeadTable extends Migration
+class CreateLeadsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class CreateLeadTable extends Migration
      */
     public function up()
     {
-        Schema::create('_lead', function (Blueprint $table) {
+        Schema::create('leads', function (Blueprint $table) {
             $table->id();
 
             $table->string('u_title_order_client');
@@ -21,7 +21,15 @@ class CreateLeadTable extends Migration
             $table->string('u_city');
             $table->string('u_date_to_work');
 
-
+            //////////////////Esto es para conectar con la id de juegos/////////////////////
+            $table->unsignedInteger('id_user');
+            $table->foreign('id_user')
+            ->references('id')
+            ->on('users')
+            ->unsigned()
+            ->constrained('users')
+            ->onUpdate('cascade')
+            ->onDelete('cascade');    
 
 
             $table->timestamps();
@@ -35,6 +43,6 @@ class CreateLeadTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('_lead');
+        Schema::dropIfExists('leads');
     }
 }
