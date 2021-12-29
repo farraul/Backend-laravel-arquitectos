@@ -21,7 +21,7 @@ class CreateLeadsTable extends Migration
             $table->string('u_city');
             $table->string('u_date_to_work');
 
-            //////////////////Esto es para conectar con la id de juegos/////////////////////
+            //////////////////Esto es para conectar con la id user/////////////////////
             $table->unsignedInteger('id_user');
             $table->foreign('id_user')
             ->references('id')
