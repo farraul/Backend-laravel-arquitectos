@@ -54,6 +54,7 @@ class LeadController extends Controller
         $u_description_order_client = $request->input('u_description_order_client');
         $u_city = $request->input('u_city');
         $u_date_to_work = $request->input('u_date_to_work');
+        $id_user = $request ->input ('id_user');
 
 
 
