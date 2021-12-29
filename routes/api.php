@@ -43,5 +43,10 @@ Route::put('Lead/{id}', [LeadController::class, "UpdateLeads"]);
 Route::delete('Lead/{id}', [LeadController::class, "DeleteLeads"]);
 
 
-
+//architect
+Route::post('newArchitect', [ArchitectController::class, "addArchitect"]);
+Route::get('Architect/{id}', [ArchitectController::class, "ArchitectByID"]);
+Route::get('Architect', [ArchitectController::class, "showAllArchitect"]);
+Route::put('Architect/{id}', [ArchitectController::class, "UpdateArchitect"]);
+Route::delete('Architect/{id}', [ArchitectController::class, "DeleteArchitect"]);
 

@@ -12,7 +12,7 @@ class ArchitectController extends Controller
 
         try {
             
-        return User::all();
+        return Architect::all();
 
         } catch(QueryException $error) {
             return $error;
@@ -22,15 +22,16 @@ class ArchitectController extends Controller
     public function addArchitect(Request $request){//sin id y sin fecha
         $web_site = $request->input('web_site');
         $description_experience = $request->input('description_experience');
+        $password = $request->input('password');
+
     
 
-
-
         try {
-            return User::create(
+            return Architect::create(
                 [
                     'web_site' => $web_site,
                     'description_experience' => $description_experience,
+                    'password' => $password,
                 ]
                 );
 
@@ -46,7 +47,7 @@ class ArchitectController extends Controller
         
     }
    ////////////////Modificar Architects////////////////
-    public function UpdateArchitects (Request $request,$id){
+    public function UpdateArchitect (Request $request,$id){
 
         $web_site = $request->input('web_site');
         $description_experience = $request->input('description_experience');
@@ -57,7 +58,7 @@ class ArchitectController extends Controller
 
         try {
 
-            $Architect = User::where('id', '=', $id)
+            $Architect = Architect::where('id', '=', $id)
             ->update(
                 [
                     'web_site' => $web_site,
@@ -65,7 +66,7 @@ class ArchitectController extends Controller
 
                 ]
                 );
-                return User::all()
+                return Architect::all()
                 ->where('id', "=", $id);
 
         } catch (QueryException $error) {
@@ -78,11 +79,9 @@ class ArchitectController extends Controller
     }
     ////////////////Busqueda por ID Architects ////////////////
 
-    public function ArchitectsByID($id){
-
-
+    public function ArchitectByID($id){
         try {
-            $Architect = User::all()
+            $Architect = Architect::all()
             ->where('id', "=", $id);
             return $Architect;
 
@@ -97,16 +96,16 @@ class ArchitectController extends Controller
     }
 
     ////////////////Borrar Architects ////////////////
-    public function DeleteArchitects($id){
+    public function DeleteArchitect($id){
 
         
 
         try {
     ////////////////BUSCA EL PLAYER POR ID. SI EXISTE, BORRA EL PLAYER. SI NO, SACA MENSAJE DE ERROR////////////////
-            $arrayArchitect = User::all()
+            $arrayArchitect = Architect::all()
             ->where('id', '=', $id);
 
-            $Architect = User::where('id', '=', $id);
+            $Architect = Architect::where('id', '=', $id);
             
             if (count($arrayArchitect) == 0) {
                 return response()->json([
