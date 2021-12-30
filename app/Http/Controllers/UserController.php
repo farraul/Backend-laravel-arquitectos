@@ -18,7 +18,7 @@ class UserController extends Controller
             return $error;
         }
     }
-  /*  ////////////////Crear Users////////////////
+   ////////////////Crear Users////////////////
     public function addUsers(Request $request){//sin id y sin fecha
         $name = $request->input('name');
         $username = $request->input('username');
@@ -55,7 +55,7 @@ class UserController extends Controller
             
         }
         
-    }*/
+    }
    ////////////////Modificar Users////////////////
     public function UpdateUsers (Request $request,$id){
 
