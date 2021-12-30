@@ -22,10 +22,12 @@ class ReserveController extends Controller
     public function addReserve(Request $request){//sin id y sin fecha
         $id_lead = $request->input ('id_lead');
         $id_architect = $request->input ('id_architect');
+        $hola = $request->input ('hola');
         
         try {
             return Reserve::create(
                 [
+                    'hola' => $hola,
                     'id_lead' => $id_architect,
                     'id_lead' => $id_architect,
                 ]

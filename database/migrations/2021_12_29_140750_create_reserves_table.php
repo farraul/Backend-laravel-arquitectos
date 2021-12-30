@@ -16,7 +16,9 @@ class CreateReservesTable extends Migration
         Schema::create('reserves', function (Blueprint $table) {
             $table->increments('id');
 
-            $table->unsignedInteger('id_lead');
+            $table->string('hola');
+
+            $table->unsignedInteger('id_lead')->nullable();
             $table->foreign('id_lead')
             ->references('id')
             ->on('leads')
@@ -25,7 +27,7 @@ class CreateReservesTable extends Migration
             ->onUpdate('cascade')
             ->onDelete('cascade');   
 
-            $table->unsignedInteger('id_architect');
+            $table->unsignedInteger('id_architect')->nullable();
             $table->foreign('id_architect')
             ->references('id')
             ->on('architects')
