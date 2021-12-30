@@ -14,7 +14,7 @@ class CreateLeadsTable extends Migration
     public function up()
     {
         Schema::create('leads', function (Blueprint $table) {
-            $table->id();
+            $table->increments('id');
 
             $table->string('u_title_order_client');
             $table->string('u_description_order_client');
@@ -22,14 +22,14 @@ class CreateLeadsTable extends Migration
             $table->string('u_date_to_work');
 
             //////////////////Esto es para conectar con la id user/////////////////////
-            $table->unsignedInteger('id_user');
+           $table->unsignedInteger('id_user');
             $table->foreign('id_user')
             ->references('id')
             ->on('users')
             ->unsigned()
             ->constrained('users')
             ->onUpdate('cascade')
-            ->onDelete('cascade');    
+            ->onDelete('cascade');   
 
 
             $table->timestamps();

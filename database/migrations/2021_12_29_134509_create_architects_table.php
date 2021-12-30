@@ -15,7 +15,7 @@ class CreateArchitectsTable extends Migration
     {
         Schema::create('architectS', function (Blueprint $table) {
 
-            $table->id();
+            $table->increments('id');
 
             $table->string('web_site')->nullable();
             $table->string('description_experience');

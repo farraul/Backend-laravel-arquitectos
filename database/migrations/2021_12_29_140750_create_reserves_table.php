@@ -14,7 +14,7 @@ class CreateReservesTable extends Migration
     public function up()
     {
         Schema::create('reserve_lead', function (Blueprint $table) {
-            $table->id();
+            $table->increments('id');
             $table->timestamps();
         });
     }
