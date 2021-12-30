@@ -27,7 +27,8 @@ class User extends Authenticatable
         'telf',
         'c_a', 
         'gender',
-        'rol'
+        'rol',
+
         ];
     
 
@@ -37,5 +38,17 @@ class User extends Authenticatable
     {
         return $this->hasMany(Lead::class);
     }
+
+    public function architects()
+    {
+        return $this->hasMany(Architect::class);
+    }
+
+    // public function architects()
+    // {
+    //     return $this->hasOne(Architect::class);
+    // }
+
+
 
 }

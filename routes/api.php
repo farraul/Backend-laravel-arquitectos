@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\ArchitectController;
 use App\Http\Controllers\LeadController;
+use App\Http\Controllers\ReserveController;
 use App\Http\Controllers\AuthController;
 
 /*
@@ -50,3 +51,8 @@ Route::get('Architect', [ArchitectController::class, "showAllArchitect"]);
 Route::put('Architect/{id}', [ArchitectController::class, "UpdateArchitect"]);
 Route::delete('Architect/{id}', [ArchitectController::class, "DeleteArchitect"]);
 
+//reserve
+Route::post('newReserve', [ReserveController::class, "addReserve"]);
+Route::get('Reserves', [ReserveController::class, "showAllReserves"]);
+Route::get('Reserve/{id}', [ReserveController::class, "ReserveByID"]);
+Route::delete('Reserve/{id}', [ReserveController::class, "DeleteReserve"]);

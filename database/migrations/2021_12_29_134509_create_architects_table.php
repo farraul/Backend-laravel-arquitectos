@@ -13,7 +13,7 @@ class CreateArchitectsTable extends Migration
      */
     public function up()
     {
-        Schema::create('architectS', function (Blueprint $table) {
+        Schema::create('architects', function (Blueprint $table) {
 
             $table->increments('id');
 
@@ -21,7 +21,7 @@ class CreateArchitectsTable extends Migration
             $table->string('description_experience');
             $table->string('password');
 
-           /* $table->unsignedInteger('id_user');
+            $table->unsignedInteger('id_user');
             $table->foreign('id_user')
             ->references('id')
             ->on('users')
@@ -31,9 +31,8 @@ class CreateArchitectsTable extends Migration
             ->onDelete('cascade');    
             $table->timestamps();
 
-            */
+            
 
-            $table->timestamps();
         });
     }
 

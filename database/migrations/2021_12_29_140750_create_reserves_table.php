@@ -13,9 +13,30 @@ class CreateReservesTable extends Migration
      */
     public function up()
     {
-        Schema::create('reserve_lead', function (Blueprint $table) {
+        Schema::create('reserves', function (Blueprint $table) {
             $table->increments('id');
+
+            $table->unsignedInteger('id_lead');
+            $table->foreign('id_lead')
+            ->references('id')
+            ->on('leads')
+            ->unsigned()
+            ->constrained('leads')
+            ->onUpdate('cascade')
+            ->onDelete('cascade');   
+
+            $table->unsignedInteger('id_architect');
+            $table->foreign('id_architect')
+            ->references('id')
+            ->on('architects')
+            ->unsigned()
+            ->constrained('architects')
+            ->onUpdate('cascade')
+            ->onDelete('cascade');   
+
+
             $table->timestamps();
+
         });
     }
 
@@ -26,6 +47,6 @@ class CreateReservesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('reserve_lead');
+        Schema::dropIfExists('reserves');
     }
 }

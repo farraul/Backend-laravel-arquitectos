@@ -30,4 +30,10 @@ class Lead extends Model
             return $this->belongsTo(User::class);
         }
 
+        public function reserves()
+        {
+            return $this->hasMany(Reserve::class);
+        }
+    
+
     }
