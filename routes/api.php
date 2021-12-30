@@ -31,6 +31,9 @@ Route::post('newUser', [AuthController::class, "userRegister"]);
 Route::post('loginUser', [AuthController::class, "userLogin"]);
 //Users
 
+Route::middleware('auth:api')->group(function(){
+
+
 Route::get('Users', [UserController::class, "showAllUsers"]);
 Route::get('User/{id}', [UserController::class, "UsersByID"]);
 Route::put('User/{id}', [UserController::class, "UpdateUsers"]);
@@ -56,3 +59,6 @@ Route::post('newReserve', [ReserveController::class, "addReserve"]);
 Route::get('Reserves', [ReserveController::class, "showAllReserves"]);
 Route::get('Reserve/{id}', [ReserveController::class, "ReserveByID"]);
 Route::delete('Reserve/{id}', [ReserveController::class, "DeleteReserve"]);
+
+
+});
