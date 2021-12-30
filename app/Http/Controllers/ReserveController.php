@@ -4,31 +4,30 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Database\QueryException;
-use App\Models\Reserve_Lead;
-class Reserve_Lead_Controller extends Controller
+use App\Models\Reserve;
+class ReserveController extends Controller
 {
     //
-    public function showAllReserve_Lead(){
+    public function showAllReserves(){
 
         try {
             
-        return User::all();
+        return Reserve::all();
 
         } catch(QueryException $error) {
             return $error;
         }
     }
     ////////////////Crear Reserve_Leads////////////////
-    public function addReserve_Leads(Request $request){//sin id y sin fecha
-        // $name = $request->input('name');
+    public function addReserve(Request $request){//sin id y sin fecha
+        $id_lead = $request->input ('id_lead');
+        $id_architect = $request->input ('id_architect');
         
         try {
-
-            return User::create(
+            return Reserve::create(
                 [
-                    // 'name' => $name,
-               
-
+                    'id_lead' => $id_architect,
+                    'id_lead' => $id_architect,
                 ]
                 );
 
@@ -70,13 +69,13 @@ class Reserve_Lead_Controller extends Controller
     }
     ////////////////Busqueda por ID Reserve_Leads ////////////////
 
-    public function Reserve_LeadsByID($id){
+    public function ReserveByID($id){
 
 
         try {
-            $Reserve_Lead = User::all()
+            $Reserve = Reserve::all()
             ->where('id', "=", $id);
-            return $Reserve_Lead;
+            return $Reserve;
 
         } catch (QueryException $error) {
 
@@ -84,31 +83,27 @@ class Reserve_Lead_Controller extends Controller
             if($codigoError){
                 return "Error $codigoError";
             }
-        }
-        
+        } 
     }
 
     ////////////////Borrar Reserve_Leads ////////////////
-    public function DeleteReserve_Leads($id){
-
-        
+    public function DeleteReserve($id){
 
         try {
-    ////////////////BUSCA EL PLAYER POR ID. SI EXISTE, BORRA EL PLAYER. SI NO, SACA MENSAJE DE ERROR////////////////
-            $arrayReserve_Lead = User::all()
+            $arrayReserve = Reserve::all()
             ->where('id', '=', $id);
 
-            $Reserve_Lead = User::where('id', '=', $id);
+            $Reserve = Reserve::where('id', '=', $id);
             
-            if (count($arrayReserve_Lead) == 0) {
+            if (count($arrayReserve) == 0) {
                 return response()->json([
-                    "data" => $arrayReserve_Lead,
+                    "data" => $arrayReserve,
                     "message" => "No se ha encontrado el Reserve_Lead"
                 ]);
             }else{
-                $Reserve_Lead->delete();
+                $Reserve->delete();
                 return response()->json([
-                    "data" => $arrayReserve_Lead,
+                    "data" => $arrayReserve ,
                     "message" => "Reserve_Lead borrado correctamente"
                 ]);
             }

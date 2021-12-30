@@ -66,6 +66,7 @@ class UserController extends Controller
         $gender = $request->input('select_gender');
         $c_a = $request->input('select_community');
         $rol =  $request->input('rol');
+        $id_architect =  $request->input('id_architect');
 
 
         try {

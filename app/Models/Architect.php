@@ -15,12 +15,18 @@ class Architect extends Model
         'web_site',
         'description_experience',
         'password',
+        'id_user'
 
         ];
 
-    /*    public function juegos() //
-    {
-        return $this->belongsTo(User::class);
-    }*/
+        public function users()
+        {
+            return $this->belongsTo(User::class);
+        }
+
+        public function reserves()
+        {
+            return $this->hasMany(Reserve::class);
+        }
 
     }
