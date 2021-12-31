@@ -26,7 +26,7 @@ class AuthController extends Controller
             'password' => bcrypt($request->password),
 
             'telf' => $request->telf,
-            'c_a' => $request->select_community,
+            'c_a' => $request->c_a,
             'gender' => $request->gender,
             'rol' => $request->rol,
 
