@@ -54,12 +54,9 @@ class AuthController extends Controller
             $token = auth()->user()->createToken('LaravelAuthApp')->accessToken;
 
              $User = User::all()
-            ->where('email', "=", $request->email);
+            ->where('email', "=", $request->email)->first();
             
-                //  $User = User::all()
-                //  ->where('token', "=", $token);
-                // return $User;
-            
+              
 
         
             return response()->json([
