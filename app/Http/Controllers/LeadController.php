@@ -12,7 +12,7 @@ class LeadController extends Controller
 
         try {
             
-        return Lead::all();
+        return Lead::all()->first();
 
         } catch(QueryException $error) {
             return $error;
