@@ -15,7 +15,6 @@ class Reserve extends Model
      * @var array<int, string>
      */
     protected $fillable = [
-        'hola',
         'id_lead',
         'id_architect'
         
