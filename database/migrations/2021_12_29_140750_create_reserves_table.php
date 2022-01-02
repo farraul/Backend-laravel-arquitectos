@@ -16,7 +16,6 @@ class CreateReservesTable extends Migration
         Schema::create('reserves', function (Blueprint $table) {
             $table->increments('id');
 
-            $table->string('hola');
 
             $table->unsignedInteger('id_lead')->nullable();
             $table->foreign('id_lead')
