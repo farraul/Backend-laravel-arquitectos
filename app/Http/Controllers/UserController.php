@@ -67,6 +67,8 @@ class UserController extends Controller
         $c_a = $request->input('select_community');
         $rol =  $request->input('rol');
         $id_architect =  $request->input('id_architect');
+        $money =  $request->input('money');
+
 
 
         try {
@@ -81,7 +83,7 @@ class UserController extends Controller
                     'c_a' => $c_a,
                     'gender' => $gender,
                     'rol' => $rol,
-                ]
+                    'money' =>$money,                ]
                 );
                 return User::all()
                 ->where('id', "=", $id);

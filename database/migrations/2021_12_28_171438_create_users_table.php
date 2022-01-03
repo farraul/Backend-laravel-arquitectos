@@ -20,6 +20,8 @@ class CreateUsersTable extends Migration
             $table->string('username');
             $table->string('password')->nullable();
             $table->string('email')->unique();
+            $table->integer('money')->default(3);
+
             //$table->timestamp('email_verified_at')->nullable();
             $table->string('telf');
             $table->string('c_a');
