@@ -1,10 +1,11 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use Illuminate\Database\QueryException;
 use App\Models\Reserve;
+use App\Models\Lead;
 class ReserveController extends Controller
 {
     //
@@ -85,6 +86,74 @@ class ReserveController extends Controller
             }
         } 
     }
+
+    /////////////////uniones//////////////////////////
+
+  public function Reserveunion(Request $request){
+
+        //  $id_lead = $request->input ('id_lead');
+         $id_architect = $request->input ('id_architect');
+
+     
+        // try {
+           
+
+
+        //     $resultado =Lead::join("reserves", "reserves.id_lead", "=", "leads.id")
+        //     ->join("architects", "architects.id", "=", "reserves.id_architect")
+        //     ->where("architects.id", "=", $id_architect)
+
+
+        //     ->select("*")
+        //     ->get();
+        //    return $resultado;
+
+        try {
+           
+
+
+            $resultado =Lead::join("reserves", "reserves.id_lead", "=", "leads.id")
+            ->join("users", "users.id", "=", "leads.id_user")
+            ->join("architects", "architects.id", "=", "reserves.id_architect")
+            ->where("architects.id", "=", $id_architect)
+
+
+            ->select("users.*", "leads.*")
+            ->get();
+           return $resultado;
+
+
+
+
+
+
+
+
+
+
+
+
+          // return Reserve::all();
+
+
+        // } catch (QueryException $error) {
+
+        //     $codigoError = $error->errorInfo[1];
+        //     if($codigoError){
+        //         return "Error $codigoError";
+        //     }
+
+        // try {
+            
+           //return Reserve::all();
+    
+            } catch(QueryException $error) {
+               return $error;
+           }
+    
+        
+    }
+
 
     ////////////////Borrar Reserve_Leads ////////////////
     public function DeleteReserve($id){

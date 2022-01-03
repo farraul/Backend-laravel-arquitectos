@@ -60,5 +60,10 @@ Route::get('Reserves', [ReserveController::class, "showAllReserves"]);
 Route::get('Reserve/{id}', [ReserveController::class, "ReserveByID"]);
 Route::delete('Reserve/{id}', [ReserveController::class, "DeleteReserve"]);
 
+Route::get('Reservesunion', [ReserveController::class, "Reserveunion"]);
+
+
+
+
 
 });
