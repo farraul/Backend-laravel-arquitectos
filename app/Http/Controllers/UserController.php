@@ -63,8 +63,8 @@ class UserController extends Controller
         $username = $request->input('username');
         $telf = $request->input('telf');
 
-        $gender = $request->input('select_gender');
-        $c_a = $request->input('select_community');
+        $gender = $request->input('gender');
+        $c_a = $request->input('c_a');
         $rol =  $request->input('rol');
         $id_architect =  $request->input('id_architect');
         $money =  $request->input('money');
@@ -83,6 +83,31 @@ class UserController extends Controller
                     'c_a' => $c_a,
                     'gender' => $gender,
                     'rol' => $rol,
+                    'money' =>$money,                ]
+                );
+                return User::all()
+                ->where('id', "=", $id);
+
+        } catch (QueryException $error) {
+            $codigoError = $error->errorInfo[1];
+            if($codigoError){
+                return "Error $codigoError";
+            }
+
+        }
+    }
+
+     ////////////////Modificar money////////////////
+     public function UpdateUsersMoney (Request $request,$id){
+
+        $money =  $request->input('money');
+
+        try {
+
+            $User = User::where('id', '=', $id)
+            ->update(
+                [
+                   
                     'money' =>$money,                ]
                 );
                 return User::all()
