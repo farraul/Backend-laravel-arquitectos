@@ -58,9 +58,10 @@ class AuthController extends Controller
             
             $User = User::
             join("architects", "architects.id_user", "=", "users.id")
-           ->where("users.email", "=", $request->email)
-
+        //    ->where("users.email", "=", $request->email)->first()
+        ->where("users.email", "=", $request->email)
             ->select("users.*" , "architects.*")
+      
             ->get();
               
 
