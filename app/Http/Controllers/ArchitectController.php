@@ -22,7 +22,7 @@ class ArchitectController extends Controller
     public function addArchitect(Request $request){//sin id y sin fecha
         $web_site = $request->input('web_site');
         $description_experience = $request->input('description_experience');
-        $password = $request->input('password');
+       // $password = $request->input('password');
         $id_user = $request->input('id_user');
 
     
@@ -32,7 +32,7 @@ class ArchitectController extends Controller
                 [
                     'web_site' => $web_site,
                     'description_experience' => $description_experience,
-                    'password' => $password,
+                    //'password' => $password,
                     'id_user' => $id_user,
                 ]
                 );
@@ -53,7 +53,7 @@ class ArchitectController extends Controller
 
         $web_site = $request->input('web_site');
         $description_experience = $request->input('description_experience');
-        $password = $request->input('password');
+       // $password = $request->input('password');
 
 
    

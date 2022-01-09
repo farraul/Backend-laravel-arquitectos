@@ -19,7 +19,7 @@ class CreateArchitectsTable extends Migration
 
             $table->string('web_site')->nullable();
             $table->string('description_experience');
-            $table->string('password');
+           
 
             $table->unsignedInteger('id_user');
             $table->foreign('id_user')
