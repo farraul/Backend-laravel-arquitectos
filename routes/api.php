@@ -44,6 +44,7 @@ Route::delete('User/{id}', [UserController::class, "DeleteUsers"]);
 Route::post('newLead', [LeadController::class, "addLead"]);
 Route::get('Lead/{id}', [LeadController::class, "LeadsByID"]);
 Route::get('Leads', [LeadController::class, "showAllLeads"]);
+Route::get('Leads_filter', [LeadController::class, "showAllLeads_with_filter"]);
 Route::put('Lead/{id}', [LeadController::class, "UpdateLeads"]);
 Route::delete('Lead/{id}', [LeadController::class, "DeleteLeads"]);
 
