@@ -1,66 +1,86 @@
 <p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400"></a></p>
 
 <p align="center">
-<a href="https://travis-ci.org/laravel/framework"><img src="https://travis-ci.org/laravel/framework.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
+https://api-laravel-arquitectos.herokuapp.com/
 </p>
 
-## About Laravel
+<div align="center">
+    
+| Tecnologias |Seguridad|   BDDD|  Servidor |
+| :---     |   :---   | :---     |  :---  |
+| Laravel  | Passport | Mysql    | Heroku |
+|PHP       | 
+|Composer  |
+|PHP       |  
+    
+</div>
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
 
-## Learning Laravel
+##  ⏺ Relaciones entre las tablas de la BBDD
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+<br>
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 1500 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+<div align="center">
+    
+![image](https://user-images.githubusercontent.com/28491001/149351860-2cf1d2b8-0ed7-4d66-bfed-fba08324bf15.png)
+    
+</div>
 
-## Laravel Sponsors
+##  ⏺ Endpoints de la API
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
 
-### Premium Partners
+### Registro
+Route::post('newUser', [AuthController::class, "userRegister"]);
+### Login
+Route::post('loginUser', [AuthController::class, "userLogin"]);
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[Many](https://www.many.co.uk)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[OP.GG](https://op.gg)**
-- **[CMS Max](https://www.cmsmax.com/)**
-- **[WebReinvent](https://webreinvent.com/?utm_source=laravel&utm_medium=github&utm_campaign=patreon-sponsors)**
-- **[Lendio](https://lendio.com)**
-- **[Romega Software](https://romegasoftware.com)**
 
-## Contributing
+### Users
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+Route::get('Users', [UserController::class, "showAllUsers"]);
 
-## Code of Conduct
+Route::get('User/{id}', [UserController::class, "UsersByID"]);
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+Route::put('User/{id}', [UserController::class, "UpdateUsers"]);
 
-## Security Vulnerabilities
+Route::put('UserMoney/{id}', [UserController::class, "UpdateUsersMoney"]);
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+Route::delete('User/{id}', [UserController::class, "DeleteUsers"]);
 
-## License
+### Leads
+Route::post('newLead', [LeadController::class, "addLead"]);
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+Route::get('Lead/{id}', [LeadController::class, "LeadsByID"]);
+
+Route::get('Leads', [LeadController::class, "showAllLeads"]);
+
+Route::get('Leads_filter', [LeadController::class, "showAllLeads_with_filter"]);
+
+Route::put('Lead/{id}', [LeadController::class, "UpdateLeads"]);
+
+Route::delete('Lead/{id}', [LeadController::class, "DeleteLeads"]);
+
+
+### Architectos
+Route::post('newArchitect', [ArchitectController::class, "addArchitect"]);
+
+Route::get('Architect/{id}', [ArchitectController::class, "ArchitectByID"]);
+
+Route::get('Architect', [ArchitectController::class, "showAllArchitect"]);
+
+Route::put('Architect/{id}', [ArchitectController::class, "UpdateArchitect"]);
+
+Route::delete('Architect/{id}', [ArchitectController::class, "DeleteArchitect"]);
+
+### Reservas
+Route::post('newReserve', [ReserveController::class, "addReserve"]);
+
+Route::get('Reserves', [ReserveController::class, "showAllReserves"]);
+
+Route::get('Reserve/{id}', [ReserveController::class, "ReserveByID"]);
+
+Route::delete('Reserve/{id}', [ReserveController::class, "DeleteReserve"]);
+
+Route::post('Reservesunion', [ReserveController::class, "Reserveunion"]);
