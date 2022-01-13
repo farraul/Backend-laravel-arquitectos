@@ -165,5 +165,3 @@ web: vendor/bin/heroku-php-apache2 public/
  Settings -> Config Vars -> Reveal Config Vars -> CLEARDB_DATABASE_URL -> APP_DEBUG = true (para ver todos los errores)
  ![bbdd](https://user-images.githubusercontent.com/28491001/149358868-fd2a51a4-d76e-4193-b718-8193471df7e6.png)
 
- 
-    
