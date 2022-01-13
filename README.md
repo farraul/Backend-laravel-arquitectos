@@ -102,6 +102,13 @@ php artisan make:model "nombre modelo"
 #### Crear migración:
 php artisan make:migration "nombre migración"
 
+##  ⏺ Endpoints de la API middleware
+
+Dentro del archivo Api.php (dentro de la carpeta routes) añadiremos:
+
+#### Route::middleware('auth:api')->group(function(){
+(Aquí irán las rutas que queremos que pasen por el middleware)
+#### }
 
 ## ⏺ Procesos
 #### Crear archivo procfile y añadir línea:
@@ -134,7 +141,7 @@ web: vendor/bin/heroku-php-apache2 public/
        
     }
     
-  #### Para identifificar el proyecto con una key:
+  #### Para identificar el proyecto con una key:
   php artisan key:generate
   #### Para migrar la base de datos:
    php artisan migrate     
