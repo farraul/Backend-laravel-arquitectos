@@ -101,6 +101,14 @@ php artisan make:controller "nombre controlador"
 php artisan make:model "nombre modelo"
 #### Crear migración:
 php artisan make:migration "nombre migración"
+  #### Para identificar el proyecto con una key:
+  php artisan key:generate
+  #### Para migrar la base de datos:
+   php artisan migrate     
+   Al migrar hay que hacer el paso de abajo ya que en la BBDD se borraron las Keys
+   
+  #### Para instalar las keys del passport:
+  php artisan --force passport_install 
 
 ##  ⏺ Endpoints de la API middleware
 
@@ -141,14 +149,7 @@ web: vendor/bin/heroku-php-apache2 public/
        
     }
     
-  #### Para identificar el proyecto con una key:
-  php artisan key:generate
-  #### Para migrar la base de datos:
-   php artisan migrate     
-   Al migrar hay que hacer el paso de abajo ya que en la BBDD se borraron las Keys
-   
-  #### Para instalar las keys del passport:
-  php artisan --force passport_install 
+
   #### Quitamos de git ignore la linea 4:
  Storage key...
   
