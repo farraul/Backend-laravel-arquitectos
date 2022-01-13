@@ -18,6 +18,42 @@ class LeadController extends Controller
             return $error;
         }
     }
+
+
+
+    ///// 
+
+    public function showAllLeads_with_filter(Request $request){
+        $id_architect = $request->input ('id_architect');
+        try {
+
+
+            // return Party::selectRaw('belongs.partyId, parties.name, users.id as userId, users.userName')
+            // ->join('belongs', 'belongs.partyId', '=', 'parties.id')
+            // ->join('users', 'users.id', '=', 'belongs.userId')
+            // ->where('belongs.userId', '=', $id)
+            // ->get();
+
+
+
+            $resultado =Lead::join("reserves", "reserves.id_lead", "!=", "leads.id")
+            ->join("architects", "architects.id", "=", "reserves.id_architect")
+            ->distinct()
+            //->whereNotIn("reserves.id_architect", "=", $id_architect)
+
+
+            ->select( "leads.*")
+            ->get();
+            return $resultado;
+
+        } catch(QueryException $error) {
+            return $error;
+        }
+    }
+
+
+
+
     ////////////////Crear Leads////////////////
     public function addLead(Request $request){//sin id y sin fecha
         $u_title_order_client = $request->input('u_title_order_client');
