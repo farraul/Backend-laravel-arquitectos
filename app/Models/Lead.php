@@ -32,7 +32,7 @@ class Lead extends Model
 
         public function reserves()
         {
-            return $this->hasMany(Reserve::class);
+            return $this->hasMany(Reserve::class,'id_lead');
         }
     
 

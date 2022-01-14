@@ -33,7 +33,6 @@ Route::post('loginUser', [AuthController::class, "userLogin"]);
 
 Route::middleware('auth:api')->group(function(){
 
-
 Route::get('Users', [UserController::class, "showAllUsers"]);
 Route::get('User/{id}', [UserController::class, "UsersByID"]);
 Route::put('User/{id}', [UserController::class, "UpdateUsers"]);
