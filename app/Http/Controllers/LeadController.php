@@ -21,30 +21,42 @@ class LeadController extends Controller
 
 
 
-    ///// 
+    ///// show all leadscf filter///
 
     public function showAllLeads_with_filter(Request $request){
         $id_architect = $request->input ('id_architect');
         try {
+        $findLeadNotReservedUser = Lead::with('reserves')
+        ->whereNotIn('id' ,function($q) use ($id_architect) {
+            $q->from('reserves')->select('id_lead')
+                ->where('id_architect','=', $id_architect);
+        })->get();
+        
+        return response()->json($findLeadNotReservedUser,200);
+        //     $resultado =Lead::join("reserves", "reserves.id_lead", "=", "leads.id")
+        //     ->join("users", "users.id", "=", "leads.id_user")
+        //     ->join("architects", "architects.id", "=", "reserves.id_architect")
+        //     ->where("architects.id", "=", $id_architect)
 
 
-            // return Party::selectRaw('belongs.partyId, parties.name, users.id as userId, users.userName')
-            // ->join('belongs', 'belongs.partyId', '=', 'parties.id')
-            // ->join('users', 'users.id', '=', 'belongs.userId')
-            // ->where('belongs.userId', '=', $id)
-            // ->get();
+        //     ->select("users.*", "leads.*")
+        //     ->get();
+        //    return $resultado;
+
+//ya aqui le voy a hacer 
+
+        //     $resultado =Lead::join("reserves", "reserves.id_lead", "=", "leads.id")
+        //     ->join("architects", "architects.id", "=", "reserves.id_architect") 
+        //    //->distinct()
+        //     ->where("reserves.id_architect", "=", $id_architect)
 
 
+        //     ->select( "leads.*")
+        //     ->get();
+        //     return $resultado;
 
-            $resultado =Lead::join("reserves", "reserves.id_lead", "!=", "leads.id")
-            ->join("architects", "architects.id", "=", "reserves.id_architect")
-            ->distinct()
-            //->whereNotIn("reserves.id_architect", "=", $id_architect)
+            //$resultado=select * from leads where i
 
-
-            ->select( "leads.*")
-            ->get();
-            return $resultado;
 
         } catch(QueryException $error) {
             return $error;
